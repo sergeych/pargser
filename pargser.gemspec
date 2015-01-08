@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["sergeych"]
   spec.email         = ["sergeych"]
   spec.summary       = %q{Very Ruby-style command line parser}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.description   = %q{Allows to write CLI in ruby without headache of arguments parsing and
+usage writing}
   spec.homepage      = ""
   spec.license       = "MIT"
 
