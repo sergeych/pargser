@@ -21,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-Very straightforward
+Rather straightforward
 
     p = Pargser.new.key('-f', '--fantastic') {
       @fantastic = true
@@ -68,7 +68,7 @@ Very straightforward
 
     p.keys_doc.should == expected_docs
 
-For details please consult documentation:
+For details please consult documentation: http://www.rubydoc.info/gems/pargser
 
 ## Contributing
 

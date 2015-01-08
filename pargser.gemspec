@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "pargser"
   spec.version       = Pargser::VERSION
   spec.authors       = ["sergeych"]
-  spec.email         = ["sergeych"]
+  spec.email         = ["real.sergeych@gmail.com"]
   spec.summary       = %q{Very Ruby-style command line parser}
   spec.description   = %q{Allows to write CLI in ruby without headache of arguments parsing and
 usage writing}
