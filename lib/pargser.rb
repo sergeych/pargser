@@ -2,12 +2,14 @@ require "pargser"
 
 # The Ruby-Style (e,g, nice and laconic) command line parser that easily supports:
 #
-# --keys
-#    optional keys with any number of aliases aliases
-# -name value
-#    key that wants value (next agrument), optionally with default value
-# --
-#    no more keys past double dash
+# * --keys
+#   optional keys with any number of aliases aliases
+#
+# * -name value
+#   key that wants value (next agrument), optionally with default value
+#
+# * --
+#   no more keys past double dash
 #
 # and regular (all other) arguments.
 #
@@ -15,7 +17,7 @@ require "pargser"
 #
 class Pargser
 
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 
   # The pargser errors, e.g. wrong usage or command line does not fit specified
   # keys ocnstraints.
@@ -25,7 +27,8 @@ class Pargser
   # Create parser instance with a list of arguments. Otherwise, arguments can
   # be passed to #parse call.
   #
-  # @param [Array] args arguments
+  # @param args [Array] optional command line arguments. Usually it is more convenient
+  #     to pass them to #parse
   def initialize args=[]
     @args     = args
     @keys     = {}
@@ -33,23 +36,23 @@ class Pargser
     @docs     = []
   end
 
-  # Register key handler.
-  # When #parse handler blocks will be called in order of appearance in
-  # arguments array
+  # Register a new key handler. When #parse fonds a key (or an alias) the blocks will be called.
+  # Invocation order is same as in the command line.
   #
+  # @param name [String] key name
   #
-  # @param [String] name key name
+  # @param aliases [Array(String)] any number of aliases for the key
   #
-  # @param [Array(String)] aliases for the key
-  #
-  # @param [Boolean] :needs_value if set then the parser wants a value argument after the
+  # @param needs_value [Boolean]  if set then the parser wants a value argument after the
   #   key which will be passed to block as an argument. if default param is not set and
   #   the key will not be detected, Pargser::Error will be raised
   #
-  # @param [String] :default value. if set, needs_value parameter can be omitted - the handler
-  #   block will be passed either with this value or with one specified in args.
+  # @param default [String] default value. if set, needs_value parameter can be omitted -
+  #   the handler block will be invoked with either this value or with one from args.
   #
-  # @param [String] :doc optional documentation string that will be used in #keys_doc
+  # @param doc [String] optional documentation string that will be used in #keys_doc
+  #
+  # @return [Pargser] self
   #
   # @yield block if the key is found with optional value argument
   #
@@ -88,10 +91,10 @@ class Pargser
   #
   # You can optionally set other arguments than specified in constructor
   #
-  # @param [Array] args to parse. If specified, arguments passed to constructor
+  # @param args [Array(String)]  to parse. If specified, arguments passed to constructor
   #                will be ignored and lost
-  # @return [Array] non-keys arguments (keys afer '--' or other arguments)
-  # @yield [String] non keys argumenrs (same as returned)
+  # @return [Array] non-keys arguments (keys after '--' or other arguments)
+  # @yield [String] non keys arguments in order of appearance (same as returned)
   def parse args=nil
     @args = args.clone if args
     no_more_keys = false
