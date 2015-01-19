@@ -1,4 +1,5 @@
-require "pargser"
+require 'pargser'
+require 'set'
 
 # The Ruby-Style (e,g, nice and laconic) command line parser that easily supports:
 #
@@ -17,7 +18,7 @@ require "pargser"
 #
 class Pargser
 
-  VERSION = "0.1.1"
+  VERSION = "0.1.2"
 
   # The pargser errors, e.g. wrong usage or command line does not fit specified
   # keys ocnstraints.
